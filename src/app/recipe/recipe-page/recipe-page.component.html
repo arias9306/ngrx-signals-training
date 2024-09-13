@@ -4,4 +4,13 @@
   </mat-toolbar-row>
 </mat-toolbar>
 
-<app-recipe-list />
+<mat-sidenav-container class="container">
+  <mat-sidenav #sidenav mode="side" position="end" [(opened)]="opened">
+    <app-recipe-form />
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <!-- <button mat-flat-button (click)="sidenav.toggle()">Create</button> -->
+    <app-recipe-list />
+  </mat-sidenav-content>
+</mat-sidenav-container>
