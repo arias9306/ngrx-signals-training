@@ -9,11 +9,11 @@ import { RecipeListComponent } from '../recipe-list/recipe-list.component';
   selector: 'app-recipe-page',
   standalone: true,
   imports: [
-    RecipeListComponent,
     MatToolbarModule,
-    RecipeFormComponent,
     MatSidenavModule,
     MatButtonModule,
+    RecipeListComponent,
+    RecipeFormComponent,
   ],
   templateUrl: './recipe-page.component.html',
   styleUrl: './recipe-page.component.css',
