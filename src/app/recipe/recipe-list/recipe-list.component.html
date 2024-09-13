@@ -1,1 +1,8 @@
-<p>recipe-list works!</p>
+<div style="padding-left: 15px">
+  <p>Count: {{ recipes.length }}</p>
+</div>
+<mat-selection-list #recipe>
+  @for (recipe of recipes; track recipe) {
+  <mat-list-option>{{ recipe.name }}</mat-list-option>
+  }
+</mat-selection-list>
