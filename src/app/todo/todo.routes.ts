@@ -5,5 +5,6 @@ export const todoRoutes: Routes = [
   {
     path: '',
     component: TodoPageComponent,
+    // providers: [TodoStore]
   },
 ];

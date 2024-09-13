@@ -1,8 +1,10 @@
 <div style="padding-left: 15px">
-  <p>Count: {{ todos.length }}</p>
+  <p>Count: {{ size() }}</p>
 </div>
 <mat-selection-list #recipe>
-  @for (recipe of todos; track recipe) {
+  @for (recipe of todos(); track recipe) {
   <mat-list-option>{{ recipe.name }}</mat-list-option>
   }
 </mat-selection-list>
+
+<button mat-flat-button (click)="add()">add</button>
