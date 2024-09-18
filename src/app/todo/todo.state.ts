@@ -8,8 +8,10 @@ import {
   withMethods,
   withState,
 } from '@ngrx/signals';
+import { SelectEntityId } from '@ngrx/signals/entities';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { map, pipe, switchMap, tap } from 'rxjs';
+import { withCrud } from '../crud.store';
 import { Todo } from './model/todo.model';
 import { TodoService } from './todo.service';
 
@@ -73,7 +75,7 @@ export const TodoStore = signalStore(
         )
       )
     ),
-    create: rxMethod<Todo>(
+    createTodo: rxMethod<Partial<Todo>>(
       pipe(
         switchMap((todo) =>
           todoService.createTodo(todo).pipe(
@@ -92,7 +94,7 @@ export const TodoStore = signalStore(
         )
       )
     ),
-    update: rxMethod<Partial<Todo>>(
+    updateTodo: rxMethod<Partial<Todo>>(
       pipe(
         switchMap((todo) =>
           todoService.updateTodo(todo).pipe(
@@ -111,7 +113,7 @@ export const TodoStore = signalStore(
         )
       )
     ),
-    delete: rxMethod<number>(
+    deleteTodo: rxMethod<number>(
       pipe(
         switchMap((id) =>
           todoService.deleteTodo(id).pipe(
@@ -136,6 +138,9 @@ export const TodoStore = signalStore(
         tap((result) => console.log(result))
       )
     ),
+    setTodo: rxMethod<Todo>(
+      pipe(tap((todo) => patchState(store, { selectedTodo: todo })))
+    ),
   })),
   withHooks((store) => ({
     onInit: () => {
@@ -148,3 +153,5 @@ export const TodoStore = signalStore(
     },
   }))
 );
+const selectId: SelectEntityId<Todo> = (todo) => todo.id;
+export const TodoCrud = signalStore(withCrud<Todo>(TodoService, selectId));

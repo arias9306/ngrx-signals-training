@@ -1,9 +1,11 @@
 <div style="padding-left: 15px">
   <p>Count: {{ size() }}</p>
 </div>
-<mat-selection-list #recipe>
-  @for (recipe of todos(); track recipe) {
-  <mat-list-option>{{ recipe.name }}</mat-list-option>
+<mat-selection-list #todo>
+  @for (todo of todos(); track todo) {
+  <mat-list-option (click)="selectedTodo(todo)">{{
+    todo.name
+  }}</mat-list-option>
   }
 </mat-selection-list>
 

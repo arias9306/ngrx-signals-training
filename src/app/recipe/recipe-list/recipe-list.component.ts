@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
-import { Recipe } from '../model/recipe.model';
+import { RecipeCrud } from '../recipe.store';
 
 @Component({
   selector: 'app-recipe-list',
@@ -8,7 +8,9 @@ import { Recipe } from '../model/recipe.model';
   imports: [MatListModule],
   templateUrl: './recipe-list.component.html',
   styleUrl: './recipe-list.component.css',
+  providers: [RecipeCrud],
 })
 export class RecipeListComponent {
-  recipes: Recipe[] = [];
+  private readonly recipeStore = inject(RecipeCrud);
+  recipes = this.recipeStore.items;
 }

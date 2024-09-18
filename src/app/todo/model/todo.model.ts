@@ -2,6 +2,6 @@ export interface Todo {
   id: number;
   name: string;
   isCompleted: boolean;
-  createdDate: Date;
-  modifiedDate: Date;
+  createdDate?: Date;
+  modifiedDate?: Date;
 }

@@ -2,7 +2,8 @@ import { JsonPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
-import { TodoStore } from '../todo.state';
+import { Todo } from '../model/todo.model';
+import { TodoCrud, TodoStore } from '../todo.state';
 
 @Component({
   selector: 'app-todo-list',
@@ -13,6 +14,9 @@ import { TodoStore } from '../todo.state';
 })
 export class TodoListComponent {
   private readonly store = inject(TodoStore);
+
+  private readonly crudStore = inject(TodoCrud);
+
   todos = this.store.todos;
   size = this.store.count;
 
@@ -21,5 +25,9 @@ export class TodoListComponent {
 
   add() {
     this.store.getTodoById(3);
+  }
+
+  selectedTodo(todo: Todo) {
+    this.store.setTodo(todo);
   }
 }
