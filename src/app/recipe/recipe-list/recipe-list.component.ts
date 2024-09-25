@@ -12,5 +12,5 @@ import { RecipeCrud } from '../recipe.store';
 })
 export class RecipeListComponent {
   private readonly recipeStore = inject(RecipeCrud);
-  recipes = this.recipeStore.items;
+  recipes = this.recipeStore.entities;
 }

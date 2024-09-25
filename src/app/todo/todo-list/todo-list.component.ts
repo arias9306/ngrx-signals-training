@@ -3,7 +3,7 @@ import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { Todo } from '../model/todo.model';
-import { TodoCrud, TodoStore } from '../todo.state';
+import { TodoStore } from '../todo.state';
 
 @Component({
   selector: 'app-todo-list',
@@ -15,7 +15,7 @@ import { TodoCrud, TodoStore } from '../todo.state';
 export class TodoListComponent {
   private readonly store = inject(TodoStore);
 
-  private readonly crudStore = inject(TodoCrud);
+  // private readonly crudStore = inject(TodoCrud);
 
   todos = this.store.todos;
   size = this.store.count;

@@ -1,3 +1,4 @@
+import { withDevtools } from '@angular-architects/ngrx-toolkit';
 import { computed, inject } from '@angular/core';
 import { tapResponse } from '@ngrx/operators';
 import {
@@ -37,7 +38,7 @@ const initialState: TodoState = {
 };
 
 export const TodoStore = signalStore(
-  { providedIn: 'root' },
+  withDevtools('todo'),
   withState<TodoState>(initialState),
   withComputed((store) => ({
     count: computed(() => store.todos().length),
